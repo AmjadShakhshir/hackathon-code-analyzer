@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code Complexity Analyzer MVP
 
-## Getting Started
+A web-based Code Complexity Analyzer built with Next.js that analyzes JavaScript files for cyclomatic complexity and dependencies.
 
-First, run the development server:
+## Features
+
+- ✅ Single JavaScript file upload interface
+- ✅ AST parsing using Esprima
+- ✅ Cyclomatic complexity calculation per function
+- ✅ Module dependency extraction (import/require statements)
+- ✅ **Interactive graphical metrics visualization**
+- ✅ **Comprehensive charts with multiple views**
+- ✅ Visual dependency graph
+- ✅ JSON API endpoint for programmatic access
+- ✅ Dark theme with proper text contrast
+
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to use the analyzer.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Endpoint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+POST `/api/analyze` with JSON body:
+```json
+{
+  "code": "function example() { return 'hello'; }",
+  "filename": "example.js"
+}
+```
 
-## Learn More
+Returns:
+```json
+{
+  "functions": [
+    { "name": "example", "cyclomaticComplexity": 1 }
+  ],
+  "dependencies": []
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Technology Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - UI components
+- **Esprima** - JavaScript AST parsing
+- **Lucide React** - Icons
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Recent Updates
 
-## Deploy on Vercel
+- ✅ **Added comprehensive metrics visualization with Recharts**
+- ✅ **Interactive charts showing CC vs LOC correlation**
+- ✅ **Complexity distribution pie chart**  
+- ✅ **Toggle between different chart views**
+- ✅ **Enhanced tooltips with detailed function information**
+- ✅ Fixed text contrast issues on dark backgrounds
+- ✅ Enhanced readability with proper color hierarchy
+- ✅ Improved form input visibility
+- ✅ Better error message presentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Graphical Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The **Metrics Visualization** section includes:
+
+- **Function Overview Chart**: Combined bar and line chart showing Cyclomatic Complexity vs Lines of Code
+- **Complexity Distribution**: Pie chart categorizing functions by complexity levels
+- **Interactive Tooltips**: Hover over data points for detailed function information
+- **View Toggle**: Switch between overview and distribution views
+- **Summary Statistics**: Key metrics displayed as cards (Total CC, LOC, Avg Params, High CC count)
